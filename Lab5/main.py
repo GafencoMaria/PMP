@@ -48,6 +48,11 @@ cpd_card2 = TabularCPD("C2", 5,
                        )
 cpd_decision2 = TabularCPD("D2", 5,
                            [
-                               
+
                            ]
                            )
+cpd_decision3 = TabularCPD("D3", 5, [])
+
+game_model.add_cpds(cpd_card1, cpd_decision2, cpd_card2)
+game_model.get_cpds()
+game_model.check_model()
