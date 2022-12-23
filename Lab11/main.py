@@ -32,25 +32,14 @@ def find_pi(n):
     inside = (x ** 2 + y ** 2) <= 1
     pi = inside.sum() * 4 / n
     error = abs((pi - np.pi) / pi) * 100
-    outside = np.invert(inside)
-    plt.figure(figsize=(8, 8))
-    plt.plot(x[inside], y[inside], 'b.')
-    plt.plot(x[outside], y[outside], 'r.')
-    plt.plot(0, 0, label=f'π*= {pi:4.3f}\nerror = {error: 4.3f}', alpha=0)
-    plt.axis('square')
-    plt.xticks([])
-    plt.yticks([])
-    plt.legend(loc=1, frameon=True, framealpha=0.9)
-    # media, deviatia standard si vizualzarea rezultatelor folosind errorbar()
-    error_mean = np.mean(error)
-    error_dev = np.std(error)
-    plt.errorbar(error)
-    return error_mean, error_dev
+    return error
 
 
-find_pi(100)
-find_pi(1000)
-find_pi(10000)
+error_list = [find_pi(100), find_pi(1000), find_pi(10000)]
+error_mean = np.mean(error_list)
+error_deviation = np.std(error_list)
+plt.errorbar(error_mean)
+plt.errorbar(error_deviation)
 
 
 # ex3
